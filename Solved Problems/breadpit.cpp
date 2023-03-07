@@ -1,4 +1,16 @@
-
+/*
+BEGIN ANNOTATION
+PROBLEM URL: https://open.kattis.com/problems/breadpit
+TAGS: Trees, Mod
+EXPLANATION: Seeing as there are 3*10^5 nodes and 3*10^5 breads, simulation is not possible.
+Note that for a parent node with two leaf children, the bread will alternate between the two.
+Or alternatively, the bread index which are === 0 (mod 2) go to the first child and 1 (mod 2) go to the second child.
+Thus when iterating through each node, we can identify a mod and remainder value, such that the bread at those index
+will pass through that node. If the node is a leaf, append the node value to the correct indices.
+Edge cases: modulus grows larger than bread size -> ignore modulus growth, move value of leftmost leaf node to index
+            remainder grows larger than bread size -> break instantly as no bread will reach this point
+END ANNOTATION
+*/
 #include <iostream>
 #include <fstream>
 #include <list>
@@ -37,7 +49,6 @@ void recur(int pos,list<int>* matrix, int rem, long mod, int* output, int n, int
     
 int main()
 {
-    
     int n = 0;
     int q = 0;
     
